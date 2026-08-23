@@ -1,0 +1,89 @@
+# Gaming LLM Wrapper Configuration
+
+# Model Configuration
+model:
+  # Model options: "llama-3-8b", "llama-3-70b", "mistral-7b", "zephyr-7b", "phi-3-mini"
+  name: "llama-3-8b"
+  # Path to local model or HuggingFace model ID
+  model_id: "meta-llama/Meta-Llama-3-8B-Instruct"
+  # Quantization: "4bit", "8bit", "none" (requires bitsandbytes)
+  quantization: "4bit"
+  # Device: "auto", "cuda", "cpu", "mps"
+  device: "auto"
+  # Max context length
+  max_context_length: 8192
+  # Generation parameters
+  temperature: 0.7
+  top_p: 0.9
+  top_k: 50
+  max_new_tokens: 2048
+  repetition_penalty: 1.1
+
+# Gaming Knowledge Base
+knowledge_base:
+  # Enable RAG for gaming knowledge
+  enabled: true
+  # Path to gaming knowledge documents
+  data_path: "./data/gaming_knowledge"
+  # Embedding model for retrieval
+  embedding_model: "sentence-transformers/all-MiniLM-L6-v2"
+  # Number of documents to retrieve
+  top_k: 5
+  # Chunk size for documents
+  chunk_size: 512
+  chunk_overlap: 50
+
+# Gaming-Specific Features
+gaming_features:
+  # Supported games for specialized knowledge
+  supported_games:
+    - "League of Legends"
+    - "Dota 2"
+    - "Counter-Strike 2"
+    - "Valorant"
+    - "World of Warcraft"
+    - "Final Fantasy XIV"
+    - "Elden Ring"
+    - "Baldur's Gate 3"
+    - "Cyberpunk 2077"
+    - "The Witcher 3"
+    - "Minecraft"
+    - "Roblox"
+    - "Fortnite"
+    - "Apex Legends"
+    - "Overwatch 2"
+  
+  # Feature toggles
+  build_optimizer: true
+  strategy_advisor: true
+  lore_explorer: true
+  patch_note_analyzer: true
+  meta_analyzer: true
+  coach_mode: true
+
+# UI Configuration
+ui:
+  # Default UI: "streamlit", "gradio", "cli"
+  default: "streamlit"
+  # Streamlit config
+  streamlit:
+    port: 8501
+    theme: "dark"
+    title: "🎮 GameMaster AI - Your Gaming Companion"
+  # Gradio config
+  gradio:
+    port: 7860
+    share: false
+    theme: "soft"
+
+# Logging
+logging:
+  level: "INFO"
+  file: "./logs/gaming_llm.log"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# Cache
+cache:
+  enabled: true
+  directory: "./cache"
+  max_size_gb: 10
